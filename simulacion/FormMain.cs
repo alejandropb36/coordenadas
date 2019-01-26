@@ -17,12 +17,32 @@ namespace simulacion
             InitializeComponent();
         }
 
+        private void DibujarLineas()
+        {
+            int x, y, heigth, width;
+            Pen pen = new Pen(Color.Black, 2);
+
+            heigth = panel1.Height;
+            width = panel1.Width;
+
+            y = 0; 
+            for (int i = 0; i < 200; i++)
+            {
+                x = 40 * i;
+                panel1.CreateGraphics().DrawLine(pen, x, y, x, heigth);
+            }
+
+            x = 0;
+            for (int i = 0; i < 200; i++)
+            {
+                y = 40 * i;
+                panel1.CreateGraphics().DrawLine(pen, x, y, width, y);
+            }
+        }
+
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            for (int i = 0; i < panel1.Width; i+= 40)
-            {
-                panel1.CreateGraphic
-            }
+            DibujarLineas();
         }
     }
 }
