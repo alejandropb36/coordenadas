@@ -10,11 +10,19 @@ using System.Windows.Forms;
 
 namespace simulacion
 {
-    public partial class Form1 : Form
+    public partial class FormMain : Form
     {
-        public Form1()
+        public FormMain()
         {
             InitializeComponent();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            for (int i = 0; i < panel1.Width; i+= 40)
+            {
+                panel1.CreateGraphic
+            }
         }
     }
 }

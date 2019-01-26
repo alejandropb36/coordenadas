@@ -14,9 +14,13 @@ namespace simulacion
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            FormMain formMain = new FormMain();
+
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new FormMain());
+
+            formMain.ShowDialog();
         }
     }
 }
