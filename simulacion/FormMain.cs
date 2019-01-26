@@ -12,6 +12,8 @@ namespace simulacion
 {
     public partial class FormMain : Form
     {
+        List<Point> points;
+
         public FormMain()
         {
             InitializeComponent();
@@ -19,23 +21,26 @@ namespace simulacion
 
         private void DibujarLineas()
         {
-            int x, y, heigth, width;
+            int x, y, height, width, linesWidth, linesHeight;
+            const int sizeSquare = 40;
             Pen pen = new Pen(Color.Black, 2);
 
-            heigth = panel1.Height;
+            height = panel1.Height;
             width = panel1.Width;
+            linesWidth = width / sizeSquare;
+            linesHeight = height / sizeSquare;
 
             y = 0; 
-            for (int i = 0; i < 200; i++)
+            for (int i = 0; i < linesWidth; i++)
             {
-                x = 40 * i;
-                panel1.CreateGraphics().DrawLine(pen, x, y, x, heigth);
+                x = sizeSquare * i;
+                panel1.CreateGraphics().DrawLine(pen, x, y, x, height);
             }
 
             x = 0;
-            for (int i = 0; i < 200; i++)
+            for (int i = 0; i < linesHeight; i++)
             {
-                y = 40 * i;
+                y = sizeSquare * i;
                 panel1.CreateGraphics().DrawLine(pen, x, y, width, y);
             }
         }
