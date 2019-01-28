@@ -1,14 +1,9 @@
 # simulacion
 Clase de simulación por computadoras
 
+*Sistemas de coordenadas
 
-En esta clase trabajare con c#
-- Se desarrollaran algoritmos de simulacion y graficos por computadoras 
+* Muestra un espacio de trabajo que representa un plano cartesiano de en donde al dar click dibuje un punto (fácilmente visible)
+* La aplicacion muestra los puntos relativos a las coordenadas marcadas
+* Guarda y carga las coordenadas desde un archivo .txt
 
-* Evaluacion:
-
- - Examenes 50%
- - Actividades posteriores20%
- - Tareas Previas 10 %
- - Proyecto integrador 20%
- 
