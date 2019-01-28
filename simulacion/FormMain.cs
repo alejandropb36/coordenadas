@@ -49,13 +49,13 @@ namespace simulacion
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            dibujarCuadricula();
+            dibujarCuadricula(); 
         }
 
         private void dibujarCoordenada(Coordenada coordenada)
         {
             Pen pen = new Pen(Color.Red, 3);
-            float x, y;
+            int x, y;
             x = coordenada.getX() * sizeSquare;
             y = coordenada.getY() * sizeSquare;
             panel1.CreateGraphics().DrawEllipse(pen, x, y, 5, 5);
@@ -63,7 +63,7 @@ namespace simulacion
 
         private void panel1_MouseClick(object sender, MouseEventArgs e)
         {
-            float coordenadaX, coordenadaY;
+            int coordenadaX, coordenadaY;
 
             coordenadaX = e.X;
             coordenadaY = e.Y;
@@ -80,59 +80,69 @@ namespace simulacion
 
             listaCoordenadas.Add(coordenada);
 
+            Console.WriteLine("------Coordenadas-----------");
             foreach (Coordenada coordenadaI in listaCoordenadas)
             {
                 Console.WriteLine(coordenadaI.getX() + "  ,  " + coordenadaI.getY());
             }
-            Console.WriteLine("------Coordenadas-----------");
 
             dibujarCoordenada(coordenada);
         }
 
+        // Boton de guardado
         private void button1_Click(object sender, EventArgs e)
         {
             using (StreamWriter sw = new StreamWriter("coordenadas.txt"))
             {
+                string linea = "";
                 foreach (Coordenada coordenadaI in listaCoordenadas)
                 {
-                    sw.WriteLine(coordenadaI.getX() + "-" + coordenadaI.getY());
+                    linea = coordenadaI.getX().ToString() + "," + coordenadaI.getY().ToString();
+                    sw.WriteLine(linea);
                 }
                 sw.Close();
             }
         }
 
+        // Boton de carga
         private void button2_Click(object sender, EventArgs e)
         {
-            using (StreamReader sr = new StreamReader("coordenadas.txt"))
+            if (File.Exists("coordenadas.txt"))
             {
-                string linea = "";
-                float x, y;
-                Coordenada coordenada = new Coordenada();
-                listaCoordenadas.Clear();
-
-                while (!sr.EndOfStream)
+                using (StreamReader sr = new StreamReader("coordenadas.txt"))
                 {
-                    string[] strCoordenada;
+                    string linea = "";
+                    int x, y;
+                    Coordenada coordenada = new Coordenada();
 
-                    linea = sr.ReadLine();
-                    strCoordenada = linea.Split('-');
+                    listaCoordenadas.Clear();
+                    while (!sr.EndOfStream)
+                    {
+                        string[] strCoordenada;
+
+                        linea = sr.ReadLine();
+                        strCoordenada = linea.Split(',');
 
 
-                    x = float.Parse(strCoordenada[0]);
-                    y = float.Parse(strCoordenada[1]);
-                    coordenada.setX(x);
-                    coordenada.setY(y);
+                        x = int.Parse(strCoordenada[0]);
+                        y = int.Parse(strCoordenada[1]);
+                        coordenada.setX(x);
+                        coordenada.setY(y);
 
-                    Console.WriteLine(coordenada.getX() + "  -  " + coordenada.getY());
+                        Console.WriteLine(coordenada.getX() + "  -  " + coordenada.getY());
 
-                    listaCoordenadas.Add(coordenada);
+                        listaCoordenadas.Add(coordenada);
 
-                    dibujarCoordenada(coordenada);
-
-                }
-                sr.Close();
+                        dibujarCoordenada(coordenada);
+                    }
+                    sr.Close();
+                } 
             }
-            
+            else
+            {
+                MessageBox.Show("No existe el archivo coordenadas.txt");
+            }
+
         }
     }
 }
