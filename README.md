@@ -1,4 +1,4 @@
-# simulacion
+# Sistema de coordenadas
 Clase de simulación por computadoras
 
 *Sistemas de coordenadas
