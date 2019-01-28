@@ -12,11 +12,12 @@ namespace simulacion
 {
     public partial class FormMain : Form
     {
-        List<Point> points;
+        List<Coordenada> coordenadas;
 
         public FormMain()
         {
             InitializeComponent();
+            coordenadas = new List<Coordenada>();
         }
 
         private void DibujarLineas()
@@ -48,6 +49,32 @@ namespace simulacion
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
             DibujarLineas();
+        }
+
+        private void panel1_MouseClick(object sender, MouseEventArgs e)
+        {
+            float coordenadaX, coordenadaY;
+
+            coordenadaX = e.X;
+            coordenadaY = e.Y;
+
+            coordenadaX = coordenadaX / 40;
+            coordenadaY = coordenadaY / 40;
+
+            MessageBox.Show(coordenadaX + "," + coordenadaY);
+
+            Coordenada coordenada = new Coordenada();
+
+            coordenada.setX(coordenadaX);
+            coordenada.setY(coordenadaY);
+
+            coordenadas.Add(coordenada);
+
+            foreach (Coordenada coordenadaI in coordenadas)
+            {
+                Console.WriteLine(coordenadaI.getX() + "  ,  " + coordenadaI.getY());
+            }
+            Console.WriteLine("------Coordenadas-----------");
         }
     }
 }
