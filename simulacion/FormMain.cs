@@ -56,7 +56,7 @@ namespace simulacion
 
         private void dibujarCoordenada(Coordenada coordenada)
         {
-            Pen pen = new Pen(Color.Red, 3);
+            Pen pen = new Pen(Color.Blue, 3);
             int x, y;
             x = coordenada.getX() * sizeSquare;
             y = coordenada.getY() * sizeSquare;
@@ -72,8 +72,8 @@ namespace simulacion
 
             coordenadaX = coordenadaX / sizeSquare;
             coordenadaY = coordenadaY / sizeSquare;
-
-            MessageBox.Show(coordenadaX + "," + coordenadaY);
+            toolStripStatusLabel1.Text = coordenadaX + "," + coordenadaY;
+            //MessageBox.Show(coordenadaX + "," + coordenadaY);
 
             Coordenada coordenada = new Coordenada();
 
@@ -112,6 +112,7 @@ namespace simulacion
         // Boton de carga
         private void button2_Click(object sender, EventArgs e)
         {
+            panel1.Refresh();
             if (File.Exists("coordenadas.txt"))
             {
                 listaCoordenadas.Clear();
