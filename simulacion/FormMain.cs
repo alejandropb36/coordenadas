@@ -14,18 +14,20 @@ namespace simulacion
     public partial class FormMain : Form
     {
         List<Coordenada> listaCoordenadas;
-        const int sizeSquare = 40;
+        List<Coordenada> relativas;
+        const int sizeSquare = 20;
 
         public FormMain()
         {
             InitializeComponent();
             listaCoordenadas = new List<Coordenada>();
+            relativas = new List<Coordenada>();
         }
 
         private void dibujarCuadricula()
         {
             int x, y, height, width, linesWidth, linesHeight;
-            Pen pen = new Pen(Color.Black, 2);
+            Pen pen = new Pen(Color.Black, 1);
 
             height = panel1.Height;
             width = panel1.Width;
@@ -87,6 +89,9 @@ namespace simulacion
             }
 
             dibujarCoordenada(coordenada);
+            listarCoordenadas(listaCoordenadas,listView1);
+            coordenadasRelativas(listaCoordenadas, relativas);
+            listarCoordenadas(relativas, listView2);
         }
 
         // Boton de guardado
@@ -109,15 +114,15 @@ namespace simulacion
         {
             if (File.Exists("coordenadas.txt"))
             {
+                listaCoordenadas.Clear();
                 using (StreamReader sr = new StreamReader("coordenadas.txt"))
                 {
                     string linea = "";
                     int x, y;
-                    Coordenada coordenada = new Coordenada();
 
-                    listaCoordenadas.Clear();
                     while (!sr.EndOfStream)
                     {
+                        Coordenada coordenada = new Coordenada();
                         string[] strCoordenada;
 
                         linea = sr.ReadLine();
@@ -136,13 +141,50 @@ namespace simulacion
                         dibujarCoordenada(coordenada);
                     }
                     sr.Close();
-                } 
+                }
+                listarCoordenadas(listaCoordenadas,listView1);
+                coordenadasRelativas(listaCoordenadas, relativas);
+                listarCoordenadas(relativas, listView2);
             }
             else
             {
                 MessageBox.Show("No existe el archivo coordenadas.txt");
             }
+            dibujarCuadricula();
+        }
 
+        private void listarCoordenadas(List<Coordenada> listaCoordenadas, ListView listView)
+        {
+            listView.Items.Clear();
+            string[] arrString = new string[3];
+            int i = 0;
+
+            foreach(Coordenada coordenadaI in listaCoordenadas)
+            {
+                arrString[0] = i.ToString();
+                arrString[1] = coordenadaI.getX().ToString();
+                arrString[2] = coordenadaI.getY().ToString();
+                ListViewItem item = new ListViewItem(arrString);
+                listView.Items.Add(item);
+                i++;
+            }
+        }
+
+        private void coordenadasRelativas(List<Coordenada> absolutas, List<Coordenada> relativas)
+        {
+            relativas.Clear();
+            int x, y;
+            relativas.Add(absolutas[0]);
+
+            for(int i = 1; i < absolutas.Count; i++)
+            {
+                Coordenada coordenada = new Coordenada();
+                x = absolutas[i].getX() - absolutas[i - 1].getX();
+                y = absolutas[i].getY() - absolutas[i - 1].getY();
+                coordenada.setX(x);
+                coordenada.setY(y);
+                relativas.Add(coordenada);
+            } 
         }
     }
 }
