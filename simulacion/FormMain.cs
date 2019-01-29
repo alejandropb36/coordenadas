@@ -173,19 +173,27 @@ namespace simulacion
 
         private void coordenadasRelativas(List<Coordenada> absolutas, List<Coordenada> relativas)
         {
-            relativas.Clear();
-            int x, y;
-            relativas.Add(absolutas[0]);
-
-            for(int i = 1; i < absolutas.Count; i++)
+            if (absolutas.Count != 0)
             {
-                Coordenada coordenada = new Coordenada();
-                x = absolutas[i].getX() - absolutas[i - 1].getX();
-                y = absolutas[i].getY() - absolutas[i - 1].getY();
-                coordenada.setX(x);
-                coordenada.setY(y);
-                relativas.Add(coordenada);
-            } 
+                int x, y;
+                relativas.Clear();
+                relativas.Add(absolutas[0]);
+
+                for (int i = 1; i < absolutas.Count; i++)
+                {
+                    Coordenada coordenada = new Coordenada();
+                    x = absolutas[i].getX() - absolutas[i - 1].getX();
+                    y = absolutas[i].getY() - absolutas[i - 1].getY();
+                    coordenada.setX(x);
+                    coordenada.setY(y);
+                    relativas.Add(coordenada);
+                }
+            }
+            else
+            {
+                toolStripStatusLabel1.Text = "No hay coordenadas que cargar";
+            }
+            
         }
     }
 }
