@@ -13,14 +13,14 @@ namespace simulacion
 {
     public partial class FormMain : Form
     {
-        List<Coordenada> listaCoordenadas;
+        List<Coordenada> absolutas;
         List<Coordenada> relativas;
         const int sizeSquare = 20;
 
         public FormMain()
         {
             InitializeComponent();
-            listaCoordenadas = new List<Coordenada>();
+            absolutas = new List<Coordenada>();
             relativas = new List<Coordenada>();
         }
 
@@ -60,15 +60,15 @@ namespace simulacion
             int x, y;
             x = coordenada.getX() * sizeSquare;
             y = coordenada.getY() * sizeSquare;
-            panel1.CreateGraphics().DrawEllipse(pen, x, y, 5, 5);
+            panel1.CreateGraphics().DrawEllipse(pen, x - 2, y - 2, 5, 5);
         }
 
-        private void panel1_MouseClick(object sender, MouseEventArgs e)
+        private void guardaCoordenada(int x, int y)
         {
             int coordenadaX, coordenadaY;
 
-            coordenadaX = e.X;
-            coordenadaY = e.Y;
+            coordenadaX = x;
+            coordenadaY = y;
 
             coordenadaX = coordenadaX / sizeSquare;
             coordenadaY = coordenadaY / sizeSquare;
@@ -80,27 +80,31 @@ namespace simulacion
             coordenada.setX(coordenadaX);
             coordenada.setY(coordenadaY);
 
-            listaCoordenadas.Add(coordenada);
+            absolutas.Add(coordenada);
 
             Console.WriteLine("------Coordenadas-----------");
-            foreach (Coordenada coordenadaI in listaCoordenadas)
+            foreach (Coordenada coordenadaI in absolutas)
             {
                 Console.WriteLine(coordenadaI.getX() + "  ,  " + coordenadaI.getY());
             }
 
             dibujarCoordenada(coordenada);
-            listarCoordenadas(listaCoordenadas,listView1);
-            coordenadasRelativas(listaCoordenadas, relativas);
-            listarCoordenadas(relativas, listView2);
+            imprimirCoordenadas(absolutas, listView1);
+            coordenadasRelativas(absolutas, relativas);
+            imprimirCoordenadas(relativas, listView2);
         }
 
-        // Boton de guardado
-        private void button1_Click(object sender, EventArgs e)
+        private void panel1_MouseClick(object sender, MouseEventArgs e)
+        {
+            guardaCoordenada(e.X, e.Y);
+        }
+
+        private void saveFile()
         {
             using (StreamWriter sw = new StreamWriter("coordenadas.txt"))
             {
                 string linea = "";
-                foreach (Coordenada coordenadaI in listaCoordenadas)
+                foreach (Coordenada coordenadaI in absolutas)
                 {
                     linea = coordenadaI.getX().ToString() + "," + coordenadaI.getY().ToString();
                     sw.WriteLine(linea);
@@ -109,13 +113,18 @@ namespace simulacion
             }
         }
 
-        // Boton de carga
-        private void button2_Click(object sender, EventArgs e)
+        // Boton de guardado
+        private void button1_Click(object sender, EventArgs e)
+        {
+            saveFile();
+        }
+
+        private void loadFile()
         {
             panel1.Refresh();
             if (File.Exists("coordenadas.txt"))
             {
-                listaCoordenadas.Clear();
+                absolutas.Clear();
                 using (StreamReader sr = new StreamReader("coordenadas.txt"))
                 {
                     string linea = "";
@@ -137,15 +146,15 @@ namespace simulacion
 
                         Console.WriteLine(coordenada.getX() + "  -  " + coordenada.getY());
 
-                        listaCoordenadas.Add(coordenada);
+                        absolutas.Add(coordenada);
 
                         dibujarCoordenada(coordenada);
                     }
                     sr.Close();
                 }
-                listarCoordenadas(listaCoordenadas,listView1);
-                coordenadasRelativas(listaCoordenadas, relativas);
-                listarCoordenadas(relativas, listView2);
+                imprimirCoordenadas(absolutas, listView1);
+                coordenadasRelativas(absolutas, relativas);
+                imprimirCoordenadas(relativas, listView2);
             }
             else
             {
@@ -154,7 +163,13 @@ namespace simulacion
             dibujarCuadricula();
         }
 
-        private void listarCoordenadas(List<Coordenada> listaCoordenadas, ListView listView)
+        // Boton de carga
+        private void button2_Click(object sender, EventArgs e)
+        {
+            loadFile();
+        }
+
+        private void imprimirCoordenadas(List<Coordenada> listaCoordenadas, ListView listView)
         {
             listView.Items.Clear();
             string[] arrString = new string[3];
