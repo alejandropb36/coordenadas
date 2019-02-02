@@ -12,7 +12,7 @@ Clase de simulación por computadoras
 El objetivo de esta actividad es saber cómo se realiza el cálculo de las coordenadas relativas por medio de las absolutas y plantearlo en software por medio de una interfaz gráfica.
 
 ---
-<br>
+
 ### Marco teórico.
 
 **Coordenadas cartesianas:**
