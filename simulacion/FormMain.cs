@@ -72,6 +72,7 @@ namespace simulacion
 
             coordenadaX = coordenadaX / sizeSquare;
             coordenadaY = coordenadaY / sizeSquare;
+
             toolStripStatusLabel1.Text = coordenadaX + "," + coordenadaY;
             //MessageBox.Show(coordenadaX + "," + coordenadaY);
 
