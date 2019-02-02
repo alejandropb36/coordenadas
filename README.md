@@ -98,7 +98,7 @@ Para seleccionar algún punto hay que dar un clic del mouse sobre el área de tr
 
 Como podemos ver el punto se marca de color azul y siempre en la esquina superior izquierda del cuadrado que estemos seleccionando. Del lado izquierdo podemos ver las coordenadas absolutas y relativas, del lado inferior izquierda de toda la ventana nos muestra el valor de la última coordenada seleccionada.
 
-![Información del punto](img/informacion-punto.png
+![Información del punto](img/informacion-punto.PNG
 "Información de las coordenadas")
 
 Como podemos ver el programa funciona correctamente, nos muestra las coordenadas relativas de acuerdo con la coordenada anterior.
@@ -108,7 +108,7 @@ Como podemos ver el programa funciona correctamente, nos muestra las coordenadas
 
 Para guardar ya que terminemos de usar el programa hay que presionar el botón de guardar y se generara un archivo llamado `coordenadas.txt`
 
-![Guardar](img/guardar.png
+![Guardar](img/guardar.PNG
 "Guardar")
 
 ![Archivo](img/archivo.jpg
