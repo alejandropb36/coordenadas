@@ -7,13 +7,13 @@ Clase de simulación por computadoras
 * La aplicacion muestra los puntos relativos a las coordenadas marcadas
 * Guarda y carga las coordenadas desde un archivo .txt
 
-###Objetivo.
+### Objetivo.
 
 El objetivo de esta actividad es saber cómo se realiza el cálculo de las coordenadas relativas por medio de las absolutas y plantearlo en software por medio de una interfaz gráfica.
 
 ---
 <br>
-###Marco teórico.
+### Marco teórico.
 
 **Coordenadas cartesianas:**
 Para entender cómo funcionan las coordenadas veremos que siguen sistema cartesiano (ejes X,Y), compuesto por un eje horizontal llamado eje X o eje de las abscisas y un eje vertical llamado eje Y o eje de las ordenadas, permite ubicar con un par de valores la posición univoca de un punto.
@@ -38,7 +38,7 @@ Son parecidas a las anteriores, pero con la diferencia de que están referidas a
 
 ---
 
-###Desarrollo.
+### Desarrollo.
 El desarrollo lo realice con C# y V1isual Studio 2017, cree una interfaz gráfica de tipo Windows Form y lo trabaje mediante los eventos de los controles de la interfaz gráfica.
 
 Lo que desarrolle fue que en un área de trabajo al momento de dar clic con el mouse en algún punto este guarda la coordenada del punto seleccionado todo lo trabajo divido entre 20 para que la coordenada seleccionada sea más representativa, de manera gráfica.
@@ -85,7 +85,7 @@ Todo esto se guarda en un documento `.txt` con el nombre de `coordenadas.txt`.
 
 ---
 
-###Pruebas y resultados.
+### Pruebas y resultados.
 
 **Interfaz gráfica.**
 ![interfaz](img/interfaz.jpg
@@ -118,6 +118,6 @@ Para cargar la información que contiene el archivo "`coordenadas.txt`" solo hay
 
 ---
 
-###Conclusiones.
+### Conclusiones.
 
 Esta práctica nos sirve para saber cómo manejar puntos grafico dentro de la simulación por computadora, ya que de aquí parten muchas cosas más. Ya con esta actividad se adquieren las habilidades para desarrollar los algoritmos de dibujo de líneas mucho más fácil.
